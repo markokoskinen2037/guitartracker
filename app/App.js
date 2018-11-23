@@ -16,18 +16,16 @@ export default class App extends Component<Props> {
         };
         firebase.initializeApp(config);
 
-        console.log(firebase);
-
-        firebase
+        //Create references
+        const dbRefObject = firebase
             .database()
-            .ref("users/001")
-            .set({ name: "lol", age: 22 })
-            .then(() => {
-                console.log("testinsertion successful");
-            })
-            .catch(error => {
-                console.log("testinsertion caused error " + error);
-            });
+            .ref()
+            .child("songs"); //Määrittää mikä db osa haetaan
+
+        //Sync object changes
+        dbRefObject.on("value", snap => console.log(snap.val()));
+
+        console.log(firebase);
     }
 
     render() {
