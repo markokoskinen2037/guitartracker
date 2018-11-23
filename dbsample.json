@@ -1,0 +1,9 @@
+[
+    { "name": "test", "hardness": 5, "mastered": false },
+    { "name": "test2", "hardness": 2, "mastered": true },
+    { "name": "test3", "hardness": 1, "mastered": false },
+    { "name": "test4", "hardness": 5, "mastered": true },
+    { "name": "test5", "hardness": 3, "mastered": false },
+    { "name": "test6", "hardness": 5, "mastered": true },
+    { "name": "test7", "hardness": 4, "mastered": true }
+]
