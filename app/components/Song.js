@@ -3,6 +3,11 @@ import React, { Component } from "react";
 import { View, Text } from "react-native";
 
 export class Song extends Component {
+    testFunction = () => {
+        console.log("Play button tapped.");
+        alert("Roger that");
+    };
+
     render() {
         return (
             <View
@@ -23,7 +28,7 @@ export class Song extends Component {
                         height: 65
                     }}>
                     <Text
-                        onPress={() => alert("TODO :)")}
+                        onPress={() => this.testFunction()}
                         style={{
                             flex: 1,
                             textAlignVertical: "center",
@@ -32,6 +37,7 @@ export class Song extends Component {
                         PLAY
                     </Text>
                 </View>
+
                 <View style={{ flex: 2 }}>
                     <Text>
                         <Text style={{ fontWeight: "bold" }}>Name: </Text>
