@@ -1,6 +1,12 @@
 import React, { Component } from "react";
-
-import { View, Text } from "react-native";
+import {
+    View,
+    Text,
+    Image,
+    TouchableHighlight,
+    TouchableOpacity,
+    StyleSheet
+} from "react-native";
 
 export class Song extends Component {
     testFunction = () => {
@@ -20,23 +26,23 @@ export class Song extends Component {
                     borderRadius: 5,
                     backgroundColor: "white"
                 }}>
-                <View
-                    style={{
-                        flex: 1,
-                        backgroundColor: "lightgray",
-                        marginRight: 10,
-                        height: 65
-                    }}>
-                    <Text
-                        onPress={() => this.testFunction()}
+                <TouchableHighlight
+                    style={{ flex: 1, marginRight: 5 }}
+                    onPress={() =>
+                        this.props.playFunction(this.props.song.videoId)
+                    }>
+                    <Image
                         style={{
-                            flex: 1,
-                            textAlignVertical: "center",
-                            textAlign: "center"
-                        }}>
-                        PLAY
-                    </Text>
-                </View>
+                            flex: 1
+                        }}
+                        source={{
+                            uri:
+                                "https://img.youtube.com/vi/" +
+                                this.props.song.videoId +
+                                "/0.jpg"
+                        }}
+                    />
+                </TouchableHighlight>
 
                 <View style={{ flex: 2 }}>
                     <Text>
@@ -62,5 +68,19 @@ export class Song extends Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#ecf0f1"
+    },
+    logo: {
+        backgroundColor: "#056ecf",
+        height: 128,
+        width: 128
+    }
+});
 
 export default Song;
