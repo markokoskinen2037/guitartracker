@@ -1,0 +1,13 @@
+db with user
+    login
+    add to favourites
+    remember preferred speed
+    add new songs to global own list (not global)
+    filter mastered
+    order by hardness
+    profilepage
+
+app statistics (total songs, etc)
+
+hide player on doubletap
+
