@@ -1,107 +1,171 @@
 import React, { Component } from "react";
-import { FlatList, Text, View } from "react-native";
+import { FlatList, Text, View, StyleSheet } from "react-native";
 import { Song } from "./components/Song";
-import firebase from "firebase";
+import YouTube from "react-native-youtube";
 
 type Props = {};
 export default class App extends Component<Props> {
-    componentWillMount() {
-        var config = {
-            apiKey: "AIzaSyDTtwwDTeB_xyJd-icmoU0j2Ni7O9CNRQI",
-            authDomain: "guitartracker-3863d.firebaseapp.com",
-            databaseURL: "https://guitartracker-3863d.firebaseio.com",
-            projectId: "guitartracker-3863d",
-            storageBucket: "guitartracker-3863d.appspot.com",
-            messagingSenderId: "817606034857"
-        };
-        firebase.initializeApp(config);
-
-        //Create references
-        const dbRefObject = firebase
-            .database()
-            .ref()
-            .child("songs"); //Määrittää mikä db osa haetaan
-
-        //Sync object changes
-        dbRefObject.on("value", snap => console.log(snap.val()));
-
-        console.log(firebase);
+    constructor(props) {
+        super(props);
+        this.state = {
+            youtubeVideoId: "Bmwdr9ZAK2I"
+        }; /* Default = mortal kombat :) */
     }
+
+    changeVideoBeingPlayed = new_youtubeVideoId => {
+        this.setState({ youtubeVideoId: new_youtubeVideoId });
+        console.log("Changing song to " + new_youtubeVideoId);
+    };
 
     render() {
         return (
             <View
                 style={{
-                    backgroundColor: "#1a1a1a" //Hiilenharmaa tausta
+                    backgroundColor: "#1a1a1a" //Darkgray base for the whole app
                 }}>
                 <View
-                    style={{ backgroundColor: "white", flexDirection: "row" }}>
+                    style={{
+                        height: 30,
+                        backgroundColor: "white",
+                        flexDirection: "row",
+                        justifyContent: "center"
+                    }}>
                     <Text
-                        style={{
-                            fontSize: 20,
-                            padding: 20,
-                            backgroundColor: "white",
-                            flex: 4
-                        }}>
-                        🎸tracker 2018 v.0.3
-                    </Text>
-                    <Text
-                        style={{
-                            backgroundColor: "white",
-                            flex: 1,
-                            textAlign: "right",
-                            marginTop: 5,
-                            marginRight: 5
-                        }}
+                        style={styles.button}
                         onPress={() => alert("TODO :)")}>
                         Profile
                     </Text>
+                    <Text
+                        style={styles.button}
+                        onPress={() => alert("TODO :)")}>
+                        Favourites
+                    </Text>
+                    <Text
+                        style={styles.button}
+                        onPress={() => alert("TODO :)")}>
+                        Add new song
+                    </Text>
                 </View>
+                <YouTube
+                    apiKey="AIzaSyBoBHTWCn2UUdpWHvXTm_wNle9trlgHo7c"
+                    videoId={this.state.youtubeVideoId} // The YouTube video ID
+                    play={true} // control playback of video with true/false
+                    fullscreen={false} // control whether the video should play in fullscreen or inline
+                    loop={true} // control whether the video should loop when ended
+                    onReady={e => this.setState({ isReady: true })}
+                    onChangeState={e => this.setState({ status: e.state })}
+                    onChangeQuality={e => this.setState({ quality: e.quality })}
+                    onError={e => this.setState({ error: e.error })}
+                    style={{ alignSelf: "stretch", height: 250 }}
+                />
                 <View style={{ marginTop: 15 }}>
                     <FlatList
                         data={[
-                            { name: "Melissa", hardness: 5, mastered: false },
                             {
-                                name: "Darude sandstorm",
-                                hardness: 5,
-                                mastered: true
-                            },
-                            {
-                                name: "Killing time",
+                                name: "Mortal Kombat",
+                                videoId: "Bmwdr9ZAK2I",
                                 hardness: 3,
                                 mastered: false
                             },
                             {
-                                name: "In the name of GOD",
-                                hardness: 5,
+                                name: "Requiem for a Dream",
+                                videoId: "njMUxAFRUhk",
+                                hardness: 1,
+                                mastered: true
+                            },
+                            {
+                                name: "We Will Rock You",
+                                videoId: "c5cV7sc75dM",
+                                hardness: 2,
                                 mastered: false
                             },
                             {
-                                name: "Freedom to Mars",
+                                name: "OMFG - Hello",
+                                videoId: "dax0ygPqt98",
+                                hardness: 3,
+                                mastered: false
+                            },
+                            {
+                                name:
+                                    "Fullmetal Alchemist: Brotherhood OP 1 - Again",
+                                videoId: "ACBO4k8WHk8",
+                                hardness: 2,
+                                mastered: false
+                            },
+                            {
+                                name: "One Punch Man OP",
+                                videoId: "XyJ6qzHXVqE",
                                 hardness: 2,
                                 mastered: true
                             },
                             {
-                                name: "For the lord",
-                                hardness: 5,
+                                name: "Nanatsu no Taizai OP 1",
+                                videoId: "2J7a7PQWtgA",
+                                hardness: 4,
+                                mastered: false
+                            },
+
+                            {
+                                name: "Mortal Kombat",
+                                videoId: "Bmwdr9ZAK2I",
+                                hardness: 3,
                                 mastered: false
                             },
                             {
-                                name: "Asians in japan",
-                                hardness: 5,
+                                name: "Requiem for a Dream",
+                                videoId: "njMUxAFRUhk",
+                                hardness: 1,
+                                mastered: true
+                            },
+                            {
+                                name: "We Will Rock You",
+                                videoId: "c5cV7sc75dM",
+                                hardness: 2,
                                 mastered: false
                             },
-                            { name: "Kill bill", hardness: 5, mastered: true },
                             {
-                                name: "Bae bae bam",
-                                hardness: 5,
+                                name: "OMFG - Hello",
+                                videoId: "dax0ygPqt98",
+                                hardness: 3,
+                                mastered: false
+                            },
+                            {
+                                name:
+                                    "Fullmetal Alchemist: Brotherhood OP 1 - Again",
+                                videoId: "ACBO4k8WHk8",
+                                hardness: 2,
+                                mastered: false
+                            },
+                            {
+                                name: "One Punch Man OP",
+                                videoId: "XyJ6qzHXVqE",
+                                hardness: 2,
+                                mastered: true
+                            },
+                            {
+                                name: "Nanatsu no Taizai OP 1",
+                                videoId: "2J7a7PQWtgA",
+                                hardness: 4,
                                 mastered: false
                             }
                         ]}
-                        renderItem={({ item }) => <Song song={item} />}
+                        renderItem={({ item }) => (
+                            <Song
+                                playFunction={this.changeVideoBeingPlayed}
+                                song={item}
+                            />
+                        )}
+                        keyExtractor={(item, index) => index.toString()}
                     />
                 </View>
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    button: {
+        flex: 1,
+        textAlign: "center"
+    }
+});
