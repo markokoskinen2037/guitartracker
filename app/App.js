@@ -25,25 +25,25 @@ export default class App extends Component<Props> {
                 }}>
                 <View
                     style={{
-                        height: 30,
+                        height: 50,
                         backgroundColor: "white",
                         flexDirection: "row",
                         justifyContent: "center"
                     }}>
                     <Text
-                        style={styles.button}
+                        style={styles.navButton}
                         onPress={() => alert("TODO :)")}>
                         Profile
                     </Text>
                     <Text
-                        style={styles.button}
+                        style={styles.navButton}
                         onPress={() => alert("TODO :)")}>
                         Favourites
                     </Text>
                     <Text
-                        style={styles.button}
+                        style={styles.navButton}
                         onPress={() => alert("TODO :)")}>
-                        Add new song
+                        Add new
                     </Text>
                 </View>
                 <YouTube
@@ -56,10 +56,11 @@ export default class App extends Component<Props> {
                     onChangeState={e => this.setState({ status: e.state })}
                     onChangeQuality={e => this.setState({ quality: e.quality })}
                     onError={e => this.setState({ error: e.error })}
-                    style={{ alignSelf: "stretch", height: 250 }}
+                    style={{ alignSelf: "stretch", height: 200 }}
                 />
-                <View style={{ marginTop: 15 }}>
+                <View>
                     <FlatList
+                        style={{ marginTop: 5 }}
                         data={[
                             {
                                 name: "Mortal Kombat",
@@ -164,8 +165,10 @@ export default class App extends Component<Props> {
 }
 
 const styles = StyleSheet.create({
-    button: {
+    navButton: {
         flex: 1,
-        textAlign: "center"
+        textAlign: "center",
+        marginTop: 15,
+        fontWeight: "bold"
     }
 });
