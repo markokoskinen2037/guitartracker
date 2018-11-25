@@ -1,3 +1,5 @@
+use secret env vars to hide api key from future commits
+
 db with user
     login
     add to favourites
@@ -11,3 +13,7 @@ app statistics (total songs, etc)
 
 hide player on doubletap
 
+bugs:
+    rotating breaks player commands (visually)
+    cant use video commands without rotating first.
+    joskus heittää longpressdelay errorin.
