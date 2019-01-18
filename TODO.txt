@@ -1,3 +1,6 @@
+[x] create signed apk
+
+
 use secret env vars to hide api key from future commits
 
 db with user
@@ -16,4 +19,4 @@ hide player on doubletap
 bugs:
     rotating breaks player commands (visually)
     cant use video commands without rotating first.
-    joskus heittää longpressdelay errorin.
+    longpressdelay error?
